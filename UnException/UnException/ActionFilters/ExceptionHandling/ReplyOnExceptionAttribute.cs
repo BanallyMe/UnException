@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 
 namespace BanallyMe.UnException.ActionFilters.ExceptionHandling
 {
@@ -6,8 +7,8 @@ namespace BanallyMe.UnException.ActionFilters.ExceptionHandling
     /// Defines a simple HTTP-reply that is sent to the client if the decorated action threw
     /// an exception of the specified type.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
-    public sealed class ReplyOnExceptionWithAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+    public sealed class ReplyOnExceptionWithAttribute : Attribute, IFilterMetadata
     {
         /// <summary>
         /// Type of exception that will be automatically replied on.
