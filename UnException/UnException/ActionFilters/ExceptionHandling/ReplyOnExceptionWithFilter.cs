@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BanallyMe.UnException.ActionFilters.ExceptionHandling
 {
@@ -24,8 +28,21 @@ namespace BanallyMe.UnException.ActionFilters.ExceptionHandling
         /// <param name="context">Context in which the action was executed.</param>
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            // TODO Implementation :-)
-            throw new NotImplementedException();
+            if (context != null && context.Exception != null)
+            {
+                var filterAttribute = GetReplyAttributeForExceptionTypeAndAction(context.Exception.GetType(), context.ActionDescriptor);
+                if (filterAttribute != null)
+                {
+                    var resultMessage = filterAttribute.ReplyMessage ?? context.Exception.Message;
+                    var statusCode = filterAttribute.HttpStatusCode;
+                    if (filterAttribute.LogException)
+                    {
+                        loggerApi.LogError(context.Exception, resultMessage);
+                    }
+                    context.Result = new ObjectResult(resultMessage) { StatusCode = statusCode };
+                    context.Exception = null;
+                }
+            }
         }
 
         /// <summary>
@@ -34,5 +51,23 @@ namespace BanallyMe.UnException.ActionFilters.ExceptionHandling
         /// <param name="context">Context in which the action is executed.</param>
         public void OnActionExecuting(ActionExecutingContext context)
         { }
+
+        private static ReplyOnExceptionWithAttribute? GetReplyAttributeForExceptionTypeAndAction(Type exceptionType, ActionDescriptor action)
+        {
+            var allFilters = GetReplyAttributesForAction(action);
+            var filterForExplicitExceptionType = allFilters.FirstOrDefault(filter => filter.ExceptionType == exceptionType);
+
+            return filterForExplicitExceptionType ?? allFilters.FirstOrDefault(filter => exceptionType.IsSubclassOf(filter.ExceptionType));
+        }
+
+        private static IEnumerable<ReplyOnExceptionWithAttribute> GetReplyAttributesForAction(ActionDescriptor action)
+        {
+            if (action.FilterDescriptors is null) return Array.Empty<ReplyOnExceptionWithAttribute>();
+
+            return action.FilterDescriptors
+                .OrderBy(filterDescriptor => filterDescriptor.Order)
+                .Select(filterDescriptor => filterDescriptor.Filter)
+                .OfType<ReplyOnExceptionWithAttribute>();
+        }
     }
 }
