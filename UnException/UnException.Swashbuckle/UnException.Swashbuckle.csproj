@@ -5,7 +5,7 @@
     <RootNamespace>BanallyMe.UnException.Swashbuckle</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>BanallyMe</Authors>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Description>.NET library to provide an integration into Swashbuckle.AspNetCore for package BanallyMe.UnException.</Description>
     <Copyright>2020 BanallyMe</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BanallyMe.UnException" Version="0.1.0" />
+    <PackageReference Include="BanallyMe.UnException" Version="0.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

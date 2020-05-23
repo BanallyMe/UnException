@@ -15,8 +15,8 @@ namespace BanallyMe.UnException.Swashbuckle.UnitTests.OperationFilters
         private readonly IOperationFilter testedFilter;
         private readonly Mock<ISchemaGenerator> schemaGenerator;
         private const int fakeReplyStatuscode = 500;
-        private const string replyMessage1 = "ReplyMessage1";
-        private const string replyMessage2 = "ReplyMessage2";
+        private const string errorDescription1 = "ReplyMessage1";
+        private const string errorDescription2 = "ReplyMessage2";
 
         public ReplyOnExceptionOperationFilterTests()
         {
@@ -29,7 +29,7 @@ namespace BanallyMe.UnException.Swashbuckle.UnitTests.OperationFilters
         {
             var testedAction = typeof(FakeController).GetMethod(nameof(FakeController.FakeActionWithReplyAttributeAndReplyText));
 
-            AssertResponseWithDescriptionIsAddedForMethod(replyMessage1, testedAction);
+            AssertResponseWithDescriptionIsAddedForMethod(errorDescription1, testedAction);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace BanallyMe.UnException.Swashbuckle.UnitTests.OperationFilters
         public void Apply_AddsOnlyOneResponseWithMergedDescriptionsForSameStatuscode()
         {
             var testedAction = typeof(FakeController).GetMethod(nameof(FakeController.FakeActionWithMultipleReplyAttributesForSameStatuscode));
-            var expectedDescription = replyMessage1 + " / " + replyMessage2;
+            var expectedDescription = errorDescription1 + " / " + errorDescription2;
 
             AssertResponseWithDescriptionIsAddedForMethod(expectedDescription, testedAction);
         }
@@ -100,13 +100,13 @@ namespace BanallyMe.UnException.Swashbuckle.UnitTests.OperationFilters
             [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode)]
             public void FakeActionWithReplyAttribute() { }
 
-            [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode, ReplyMessage = replyMessage1)]
+            [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode, ErrorDescription = errorDescription1)]
             public void FakeActionWithReplyAttributeAndReplyText() { }
 
             public void FakeActionWithoutReplyAttribute() { }
 
-            [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode, ReplyMessage = replyMessage1)]
-            [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode, ReplyMessage = replyMessage2)]
+            [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode, ErrorDescription = errorDescription1)]
+            [ReplyOnExceptionWith(typeof(Exception), fakeReplyStatuscode, ErrorDescription = errorDescription2)]
             public void FakeActionWithMultipleReplyAttributesForSameStatuscode() { }
         }
     }

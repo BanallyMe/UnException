@@ -74,7 +74,7 @@ namespace BanallyMe.UnException.Swashbuckle.OperationFilters
             public static OperationResponse FromReplyAttributeForContext(ReplyOnExceptionWithAttribute replyAttribute, OperationFilterContext context)
                 => new OperationResponse(
                     replyAttribute.HttpStatusCode.ToString(CultureInfo.InvariantCulture),
-                    replyAttribute.ReplyMessage ?? "No description provided",
+                    replyAttribute.ErrorDescription ?? "No description provided",
                     new Dictionary<string, OpenApiMediaType> { ["text/plain"] = GetStringMediaTypeForContext(context) }
                 );
 
