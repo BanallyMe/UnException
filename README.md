@@ -83,4 +83,4 @@ public class ExampleController : Controller
 Feel free to provide pull requests to improve UnException. Please also make sure to update any tests affected by changed code.
 
 ## License
-ValidationAdapter is published under the [MIT license](https://choosealicense.com/licenses/mit/).
+UnException is published under the [MIT license](https://choosealicense.com/licenses/mit/).
