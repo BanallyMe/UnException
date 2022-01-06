@@ -8,7 +8,7 @@ namespace BanallyMe.UnException.ActionFilters.ExceptionHandling
     /// an exception of the specified type.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class ReplyOnExceptionWithAttribute : Attribute, IFilterMetadata
+    public class ReplyOnExceptionWithAttribute : Attribute, IFilterMetadata
     {
         /// <summary>
         /// Type of exception that will be automatically replied on.
