@@ -12,6 +12,7 @@
     <PackageProjectUrl>https://github.com/BanallyMe/UnException</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BanallyMe/UnException</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   
   <PropertyGroup>
