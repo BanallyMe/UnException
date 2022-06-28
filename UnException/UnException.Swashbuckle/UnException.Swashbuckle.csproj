@@ -5,7 +5,7 @@
     <RootNamespace>BanallyMe.UnException.Swashbuckle</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>BanallyMe</Authors>
-    <Version>0.2.2</Version>
+    <Version>0.3.0</Version>
     <Description>.NET library to provide an integration into Swashbuckle.AspNetCore for package BanallyMe.UnException.</Description>
     <Copyright>2020 BanallyMe</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
