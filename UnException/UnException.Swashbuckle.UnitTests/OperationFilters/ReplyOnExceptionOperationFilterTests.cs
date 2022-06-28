@@ -53,7 +53,7 @@ namespace BanallyMe.UnException.Swashbuckle.UnitTests.OperationFilters
         {
             var fakeContext = new OperationFilterContext(null, schemaGenerator.Object, null, method);
             var fakeSchema = new OpenApiSchema();
-            schemaGenerator.Setup(gen => gen.GenerateSchema(typeof(string), fakeContext.SchemaRepository, null, null)).Returns(fakeSchema);
+            schemaGenerator.Setup(gen => gen.GenerateSchema(typeof(string), fakeContext.SchemaRepository, null, null, null)).Returns(fakeSchema);
             var fakeOperation = new OpenApiOperation { Responses = new OpenApiResponses() };
 
             var expectedResponseStatusCode = fakeReplyStatuscode.ToString(System.Globalization.CultureInfo.InvariantCulture);
