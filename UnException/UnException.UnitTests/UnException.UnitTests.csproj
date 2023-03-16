@@ -7,13 +7,13 @@
     <Description>Unit-Tests for package BanallyMe.UnException</Description>
     <Copyright>2020 BanallyMe</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Company />
     <Authors>BanallyMe</Authors>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <NoWarn>CA1707;</NoWarn>
     <IsPackable>false</IsPackable>
   </PropertyGroup>

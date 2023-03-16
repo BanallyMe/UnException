@@ -4,8 +4,9 @@
     <AssemblyName>BanallyMe.UnException.Swashbuckle</AssemblyName>
     <RootNamespace>BanallyMe.UnException.Swashbuckle</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
     <Authors>BanallyMe</Authors>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <Description>.NET library to provide an integration into Swashbuckle.AspNetCore for package BanallyMe.UnException.</Description>
     <Copyright>2020 BanallyMe</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
@@ -16,20 +17,23 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net7.0</TargetFrameworks>
     <Nullable>Enable</Nullable>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <NoWarn>CA1303;</NoWarn>
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BanallyMe.UnException" Version="0.2.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UnException\UnException.csproj" />
   </ItemGroup>
 
 </Project>
